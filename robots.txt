@@ -1,0 +1,19 @@
+Sitemap: https://www.serveur-vocal-audiotel.fr/index-sitemap.xml
+Sitemap: https://www.serveur-vocal-audiotel.fr/blog-sitemap.xml
+
+User-agent: *
+
+Disallow: /blog/wp-login.php
+Disallow: /blog/wp-admin
+Disallow: /blog/wp-includes
+Disallow: /blog/wp-content
+Allow: /blog/wp-content/uploads
+Disallow: /blog/*/trackback
+Disallow: /blog/*/feed
+Disallow: /blog/*/comments
+Disallow: /blog/cgi-bin
+Disallow: /blog/*.inc$
+Disallow: /blog/*.gz
+Disallow: /blog/*.cgi
+Noindex: /blog/validation-formulaire/
+

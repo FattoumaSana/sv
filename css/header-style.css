@@ -1,0 +1,299 @@
+/* =============================================== */
+/* STYLES MODERNES POUR LE HEADER */
+/* Fichier : header-style.css */
+/* =============================================== */
+
+/* Variables CSS pour un design professionnel */
+:root {
+    --primary-blue: #2563eb;
+    --secondary-blue: #1e40af;
+    --accent-blue: #3b82f6;
+    --text-dark: #1f2937;
+    --text-medium: #4b5563;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --light-bg: #f8fafc;
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+/* HEADER PRINCIPAL MODERNISÉ */
+body #header .header-inner {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    padding: 0.75rem 0;
+}
+
+body #header.scrolled .header-inner {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem 0;
+}
+
+/* 1. LE CONTENEUR PRINCIPAL EN FLEXBOX - AJUSTEMENT POUR CENTRAGE ET ESPACEMENT */
+body #header .header-inner .container {
+    display: flex !important; 
+    align-items: center;   
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 80px;
+    gap: 2rem; 
+}
+
+/* 2. LE LOGO */
+#header .header-inner #logo a img { 
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+body #header #logo {
+    flex-shrink: 0;
+    order: 1;
+    margin: 0;
+    padding: 0;
+    margin-right: auto; 
+}
+
+body #header #logo > a:hover {
+    transform: scale(1.02);
+}
+
+body #header #logo > a img {
+    height: 35px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* 3. LE MENU DE NAVIGATION (LA PARTIE LA PLUS IMPORTANTE) */
+body #header #mainMenu {
+    flex-grow: 0; /* Ne prend pas d'espace supplémentaire, se centre */
+    display: flex;
+    justify-content: center; /* Centre son contenu (la balise <nav>) */
+    order: 2;
+    
+    /* On annule tout style hérité du template qui pourrait gêner */
+    width: auto; /* Assure que la largeur est déterminée par le contenu */
+    float: none;
+    position: relative;
+}
+
+/* On s'assure que rien ne flotte à l'intérieur */
+body #header #mainMenu nav,
+body #header #mainMenu nav > ul {
+    float: none;
+}
+
+body #header #mainMenu nav > ul {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espace entre les liens */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 4. LE STYLE DES LIENS (PLUS FIN ET PROFESSIONNEL) */
+body #header #mainMenu nav > ul > li > a {
+    display: block;
+    padding: 0.6rem 1rem;
+    font-size: 14px; /* Ajusté à 14px pour une meilleure lisibilité */
+    font-weight: 500;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+body #header #mainMenu nav > ul > li > a:hover,
+body #header #mainMenu nav > ul > li.current > a {
+    color: var(--primary-blue);
+    background-color: rgba(37, 99, 235, 0.08);
+}
+
+/* SOUS-MENUS MODERNES - CORRECTION MARGE */
+body #header #mainMenu nav > ul > li .dropdown-menu {
+    top: 100%;
+    left: 0;
+    position: absolute; /* Ajouté pour un positionnement correct */
+    background: white;
+    min-width: 280px;
+    padding: 10px 0; 
+    margin-top: 0px; /* TRÈS IMPORTANT : Supprimer cette marge pour éviter l'interruption au survol */
+    border-radius: 12px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-light);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999; /* Assurer que le sous-menu est au-dessus */
+}
+
+body #header #mainMenu nav > ul > li:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    /* display: block; -- Supprimé car `visibility` et `opacity` gèrent l'apparition */
+}
+
+body #header #mainMenu nav > ul > li .dropdown-menu > li > a {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-medium);
+    transition: all 0.15s ease;
+    display: block; /* S'assurer que le lien occupe tout l'espace */
+}
+
+body #header #mainMenu nav > ul > li .dropdown-menu > li:hover > a {
+    color: var(--primary-blue);
+    background-color: var(--light-bg);
+    padding-left: 1.5rem;
+}
+
+/* 5. LE BOUTON TÉLÉPHONE - AJUSTEMENT POUR SE POUSSER À DROITE */
+body .header-phone-section {
+    flex-shrink: 0; /* Empêche le bouton de rétrécir */
+    order: 3;
+    margin-left: auto; /* Pousse le bouton à droite */
+}
+
+/* Animation du Bouton CTA - Ajustements */
+body .btn-phone-professional {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    animation: float-animation 2.5s ease-in-out infinite !important; /* Durée ajustée */
+}
+
+body .btn-phone-professional:hover {
+    animation-play-state: paused !important;
+    transform: translateY(-2px) scale(1.01); /* Léger scale au hover */
+    background: var(--secondary-blue);
+    color: white;
+    box-shadow: 0 10px 20px rgba(59, 110, 255, 0.25) !important;
+}
+/* Keyframes pour l'animation de flottaison - Ajustements */
+@keyframes float-animation {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 4px 15px rgba(59, 110, 255, 0.2);
+  }
+  50% {
+    transform: translateY(-5px); /* Moins de mouvement vertical */
+    box-shadow: 0 8px 20px rgba(59, 110, 255, 0.25); /* Ombre légèrement ajustée */
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 4px 15px rgba(59, 110, 255, 0.2);
+  }
+}
+
+/* MENU MOBILE TRIGGER */
+body #header #mainMenu-trigger {
+    display: none; /* Caché par défaut sur desktop */
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    order: 4;
+}
+
+body .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-dark);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+/* Animation hamburger */
+body #header #mainMenu-trigger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+body #header #mainMenu-trigger.active .hamburger-line:nth-child(2) { opacity: 0; }
+body #header #mainMenu-trigger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    body #header .header-inner .container {
+        padding: 0 1rem;
+        height: auto;
+        justify-content: space-between; /* Revert to space-between for mobile */
+        gap: 0; /* Remove gap for mobile, or adjust as needed */
+    }
+    body #header #logo { order: 1; margin-right: 0; } /* Remove auto margin for mobile */
+    body .header-phone-section { order: 2; margin-left: auto; margin-right: 1rem; }
+    body #header #mainMenu-trigger { display: block; order: 3; }
+    body #header #mainMenu {
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid var(--border-light);
+        max-height: 0;
+        overflow-y: auto;
+        opacity: 0;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+        box-shadow: var(--shadow-lg);
+        order: 4;
+        z-index: 9998;
+        flex-direction: column;
+    }
+    body #header #mainMenu.menu-animate {
+        max-height: 80vh;
+        opacity: 1;
+    }
+    body #header #mainMenu nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
+    body #header #mainMenu nav > ul > li > a {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border-light);
+    }
+    
+    body #header #mainMenu nav > ul > li .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--light-bg);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        padding: 0;
+        min-width: 100%;
+    }
+    body #header #mainMenu nav > ul > li.dropdown-open .dropdown-menu {
+        max-height: 500px;
+        padding: 0.5rem 0;
+    }
+    body #header #mainMenu nav > ul > li .dropdown-menu > li > a {
+        padding: 0.75rem 2.5rem;
+    }
+}

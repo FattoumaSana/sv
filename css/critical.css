@@ -1,0 +1,104 @@
+/* Reset et base */
+*{box-sizing:border-box}
+body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.4;color:#333;background:#fff}
+
+/* Header */
+.header{background:#003366;color:#fff;padding:15px 0;position:relative;z-index:100}
+.header-content{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Navigation principale */
+.menu{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:10px 0;margin:0;list-style:none}
+.menu li{margin:0}
+.menu a{color:#fff;text-decoration:none;padding:8px 15px;border-radius:3px;background:rgba(255,255,255,0.1);font-size:14px;display:block;transition:background 0.3s ease}
+.menu a:hover{background:rgba(255,255,255,0.2)}
+
+/* Logo */
+.logo{font-size:1.5rem;font-weight:bold;color:#fff;text-decoration:none}
+
+/* Slider Inspiro optimisé pour LCP */
+.inspiro-slider{position:relative;overflow:hidden;height:400px;background:#f5f5f5}
+
+/* Slides */
+.slide{position:relative;width:100%;height:100%;overflow:hidden;display:none}
+.slide.active,.slide:first-child{display:block}
+
+/* Images de fond optimisées */
+.slide-bg-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+
+/* Container des slides */
+.slide .container{position:relative;z-index:2;height:100%;display:flex;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Captions des slides */
+.slide-captions{width:100%}
+.slide-captions .col-lg-7{width:100%;max-width:600px}
+.slide-captions.text-left{text-align:left}
+.slide-captions.text-center{text-align:center}
+
+/* Contenu héro */
+.hero-heading-2{background:rgba(0,51,102,0.85);padding:25px;border-radius:8px;backdrop-filter:blur(3px);box-shadow:0 4px 15px rgba(0,0,0,0.3)}
+
+.hero-heading-2 h1,.hero-heading-2 h2,.hero-heading-2 h3{margin:0 0 15px 0;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,0.7);line-height:1.2}
+
+.hero-heading-2 h1{font-size:clamp(1.8rem,4vw,2.8rem)}
+.hero-heading-2 h2{font-size:clamp(1.6rem,3.5vw,2.4rem)}
+.hero-heading-2 h3{font-size:clamp(1.3rem,3vw,2rem)}
+
+.hero-heading-2 p{color:#fff;margin:10px 0;text-shadow:1px 1px 2px rgba(0,0,0,0.7)}
+.hero-heading-2 .lead{font-size:1.1rem;font-weight:300}
+
+/* Boutons */
+.btn{display:inline-block;padding:12px 24px;margin-top:15px;background:#fff;color:#003366;text-decoration:none;border-radius:5px;font-weight:500;transition:all 0.3s ease;border:none;cursor:pointer}
+.btn:hover{background:#f0f0f0;transform:translateY(-1px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}
+.btn-light{background:#fff;color:#003366}
+
+/* Classes utilitaires */
+.text-light{color:#fff!important}
+.text-center{text-align:center}
+.text-left{text-align:left}
+.m-b-0{margin-bottom:0!important}
+.m-t-0{margin-top:0!important}
+.background-colored{/* Déjà géré par hero-heading-2 */}
+
+/* Section principale après slider */
+.main-content{padding:40px 20px;max-width:1200px;margin:0 auto}
+.intro{text-align:center;margin-bottom:40px}
+.intro h1{color:#003366;font-size:clamp(1.8rem,4vw,2.8rem);margin:0 0 20px 0}
+
+/* Lazy loading */
+.lazy{transition:opacity 0.3s ease}
+.lazy[data-src]{opacity:0}
+.lazy.loaded{opacity:1}
+
+/* Performance - éviter les reflows */
+.container{contain:layout style}
+
+/* Mobile optimizations */
+@media (max-width:768px){
+    .inspiro-slider{height:360px}
+    
+    .menu{flex-direction:column;gap:5px;padding:5px 0}
+    .menu a{padding:10px 15px;margin:2px 0}
+    
+    .hero-heading-2{padding:20px 15px;margin:0 10px}
+    .hero-heading-2 h1,.hero-heading-2 h2,.hero-heading-2 h3{margin-bottom:10px}
+    .hero-heading-2 .lead{font-size:1rem}
+    
+    .slide .container{padding:0 15px}
+    .main-content{padding:20px 15px}
+    
+    .btn{padding:10px 20px;font-size:14px}
+}
+
+@media (max-width:480px){
+    .inspiro-slider{height:300px}
+    .hero-heading-2{padding:15px 10px}
+    .hero-heading-2 h1,.hero-heading-2 h2{font-size:1.4rem}
+    .hero-heading-2 h3{font-size:1.2rem}
+}
+
+/* Amélioration des performances */
+.slide{transform:translateZ(0);will-change:transform}
+.slide-bg-image{will-change:transform}
+
+/* Preload styling pour éviter FOUC */
+.inspiro-slider::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#003366 0%,#0066cc 100%);z-index:0;opacity:0.1}

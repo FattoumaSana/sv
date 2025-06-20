@@ -1,0 +1,222 @@
+ErrorDocument 404 /404.php
+
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^serveur-vocal-audiotel\.com [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}
+
+
+RewriteEngine on
+RewriteCond %{SERVER_PORT} 80
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+RewriteCond %{HTTP_HOST} ^www.serveur-vocal-audiotel.com$
+
+RewriteCond %{REQUEST_URI} !^/$
+
+RewriteCond %{REQUEST_URI} !^/index.php$
+
+RewriteCond %{REQUEST_URI} !^/old.php$
+
+RewriteCond %{REQUEST_URI} !^/robots.txt$
+
+RewriteCond %{REQUEST_URI} !^/robots-old.txt$
+
+RewriteCond %{REQUEST_URI} !^/sitemap-old.xml$
+
+RewriteCond %{REQUEST_URI} !^/old1.jpg$
+
+RewriteCond %{REQUEST_URI} !^/google3a69dd2e16c85301.html$
+
+#RewriteCond %{REQUEST_URI} !^/blog/(.*)$
+
+RewriteRule ^(.*)$ https://www.serveur-vocal-audiotel.fr/$1 [QSA,R=301,L]
+
+
+
+RewriteCond %{HTTP_HOST} ^www.serveur-vocal-audiotel.com$
+
+RewriteCond %{REQUEST_URI} ^/robots.txt$
+
+RewriteRule ^(.*)$ https://www.serveur-vocal-audiotel.com/robots-old.txt [QSA,R=301,L]
+
+
+
+RewriteCond %{HTTP_HOST} ^www.serveur-vocal-audiotel.com$
+
+RewriteCond %{REQUEST_URI} ^/$ [or]
+
+RewriteCond %{REQUEST_URI} ^/index.php$
+
+RewriteRule ^(.*)$ https://www.serveur-vocal-audiotel.com/old.php [QSA,R=301,L]
+
+
+
+Redirect permanent /hebergement-audiotel.html https://www.serveur-vocal-audiotel.com/hebergement-audiotel.php
+
+Redirect permanent /avi.html https://www.serveur-vocal-audiotel.fr/avi.php
+
+Redirect permanent /rvi.html https://www.serveur-vocal-audiotel.fr/rvi.php
+
+Redirect permanent /mvi.html https://www.serveur-vocal-audiotel.fr/mvi.php
+
+Redirect permanent /charte.html https://www.serveur-vocal-audiotel.fr/charte.php
+
+Redirect permanent /exemples.html https://www.serveur-vocal-audiotel.fr/exemples.php
+
+Redirect permanent /serveur-svi.html https://www.serveur-vocal-audiotel.fr/serveur-svi.php
+
+Redirect permanent /communicator_xl.html https://www.serveur-vocal-audiotel.fr/communicator_xl.php
+
+Redirect permanent /communicator.html https://www.serveur-vocal-audiotel.fr/communicator.php
+
+Redirect permanent /plateforme.html https://www.serveur-vocal-audiotel.fr/plateforme.php
+
+Redirect permanent /serveur-vocal.html https://www.serveur-vocal-audiotel.fr/serveur-vocal.php
+
+Redirect permanent /clients.html https://www.serveur-vocal-audiotel.fr/clients.php
+
+Redirect permanent /fournisseurs_service.html https://www.serveur-vocal-audiotel.fr/fournisseurs_service.php
+
+Redirect permanent /installation-serveur-vocal.html https://www.serveur-vocal-audiotel.fr/installation-serveur-vocal.php
+
+Redirect permanent /entreprises.html https://www.serveur-vocal-audiotel.fr/entreprises.php
+
+Redirect permanent /societe.html https://www.serveur-vocal-audiotel.fr/societe.php
+
+Redirect permanent /moyens.html https://www.serveur-vocal-audiotel.fr/moyens.php
+
+Redirect permanent /numero_08.html https://www.serveur-vocal-audiotel.fr/numero_08.php
+
+Redirect permanent /hebergement.html https://www.serveur-vocal-audiotel.fr/
+
+Redirect permanent /support.html https://www.serveur-vocal-audiotel.fr/
+
+Redirect permanent /services.html https://www.serveur-vocal-audiotel.fr/
+
+Redirect permanent /serveur_vocal.html https://www.serveur-vocal-audiotel.fr/
+
+Redirect permanent /sitemap-sva.xml https://www.serveur-vocal-audiotel.fr/
+
+
+
+#Codes à pas supprimer (optimisation technique)
+
+
+
+# MOD_DEFLATE COMPRESSION
+
+SetOutputFilter DEFLATE
+
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-javascript application/x-httpd-php
+
+#Pour les navigateurs incompatibles
+
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+#ne pas mettre en cache si ces fichiers le sont déjà
+
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip
+
+#les proxies doivent donner le bon contenu
+
+Header append Vary User-Agent env=!dont-vary
+
+
+
+# BEGIN Expire headers
+
+<IfModule mod_expires.c>
+
+ ExpiresActive On
+
+ ExpiresDefault "access plus 7200 seconds"
+
+ ExpiresByType image/jpg "access plus 31536000 seconds"
+
+ ExpiresByType image/jpeg "access plus 31536000 seconds"
+
+ ExpiresByType image/png "access plus 31536000 seconds"
+
+ ExpiresByType image/gif "access plus 31536000 seconds"
+
+ ExpiresByType image/webp "access plus 31536000 seconds"
+
+ AddType image/x-icon .ico
+
+ ExpiresByType image/ico "access plus 31536000 seconds"
+
+ ExpiresByType image/icon "access plus 31536000 seconds"
+
+ ExpiresByType image/x-icon "access plus 31536000 seconds"
+
+ ExpiresByType text/css "access plus 9892000 seconds"
+
+ ExpiresByType text/javascript "access plus 9892000 seconds"
+
+ ExpiresByType text/html "access plus 7200 seconds"
+
+ ExpiresByType application/xhtml+xml "access plus 7200 seconds"
+
+ ExpiresByType application/javascript A2592000
+
+ ExpiresByType application/x-javascript "access plus 2592000 seconds"
+
+ ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+
+</IfModule>
+
+# END Expire headers
+
+
+
+# BEGIN Cache-Control Headers
+
+<IfModule mod_headers.c>
+
+ <FilesMatch "\.(ico|jpe?g|png|gif|swf|css|gz)$">
+
+ Header set Cache-Control "max-age=2592000, public"
+
+ </FilesMatch>
+
+ <FilesMatch "\.(js)$">
+
+ Header set Cache-Control "max-age=2592000, private"
+
+ </FilesMatch>
+
+<filesMatch "\.(html|htm)$">
+
+Header set Cache-Control "max-age=7200, public"
+
+</filesMatch>
+
+# Disable caching for scripts and other dynamic files
+
+<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+
+Header unset Cache-Control
+
+</FilesMatch>
+
+</IfModule>
+
+# END Cache-Control Headers
+
+
+
+# KILL THEM ETAGS
+
+Header unset ETag
+
+FileETag none
+
